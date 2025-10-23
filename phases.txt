@@ -1,4 +1,4 @@
-1st: created 1st hand tracking and drawing prototype
+1st: -created 1st hand tracking and drawing prototype
 
 2nd: -enhanced the jitter (shaking of the handwriting) by applying a smoothing factor -> instead of jumping directly 	from previous position of the tip to the next, now with a factor of 0.5 we follow the point in the middle of 	the line between the previous and new position, 
      -added a finger counting logic for decision making -> 1) write only when index tip is up
@@ -6,4 +6,7 @@
 							   3) else do nothing or stop writing
 
  
-3rd: -enhanced the classifier input logic for easier and smoother training and decision making -> added a transparent 	canvas (black board that is unseen for the user), this black board will be used for model input instead of trying to detect and isolating the drown letter
+3rd: -enhanced the classifier input logic for easier and smoother training and decision making -> added a transparent 	canvas (black board that is unseen for the user), this black board will be used for model input instead of 	trying to detect and isolating the drown letter
+
+4th: -enhanced the hand state decision making -> added a simple code to keep track of previous hand state so that when 	classification state (5 fingers = palm) is ON it won't repeatedly read it as ON (which will trigger the model 	infinitely and will feed it empty frames), now we only classify when the previous state is NOT classify
+     *Note: the line that the user sees fades after a max length, but for the frame that will be fed to the model it 	contains the full history of the drowning (you can continue the letter even if the line fades)
