@@ -11,5 +11,15 @@
 4th: -Enhanced the hand state decision making -> added a simple code to keep track of previous hand state so that when 	classification state (5 fingers = palm) is ON it won't repeatedly read it as ON (which will trigger the model 	infinitely and will feed it empty frames), now we only classify when the previous state is NOT classify
      *Note: the line that the user sees fades after a max length, but for the frame that will be fed to the model it 	contains the full history of the drowning (you can continue the letter even if the line fades)
 
-5th: -Added a preprocessing function -> the final image (containing the letter) will be cropped to contain exactly the 	letter in the center, this is done by finding the bounding boxes and combining them then cropping based on 	that, finally the image will be resized to a standard 64*64 shape that will be the input to our model later.
+5th: -Added a preprocessing function -> the final image (containing the letter) will be cropped to contain exactly 	the letter in the center, this is done by finding the bounding boxes and combining them then cropping based on 	that, finally the image will be resized to a standard 64*64 shape that will be the input to our model 	later.
      -Added delete previous letter (only pinky up), this will be useful to delete the wrong outcome of the 	classification (could be the model or the user's mistake)
+
+6th: -Added the training data preprocessing logic -> import the data from EMNIST, filtered the classes to digits and 	uppercase letters only (36 classes)
+     -Created simple CNN model for testing
+     -Created the training logic code and added W&B for charts and reports, base model achieved 93% accuracy in 10 epochs
+     -Added the classification logic inside of the classify state in the main code -> Loaded the pretrained model then fed 	the images to it inside the classify state
+
+7th: -Created a small display on the top left where classified elements will be printed and the display grows/shrinks 	based on the length of the sentence
+
+Next step: -Enhance the code and try different models
+	   -Use the powerful W&B sweep for automatic hyperparameter tuning

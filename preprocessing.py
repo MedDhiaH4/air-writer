@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-def preprocess_image(canvas, size=64):
+def preprocess_image(canvas, size=28):
     """
     Takes the full-size canvas, finds the bounding box of the drawing,
     crops it, pads it to a square, and resizes it to a standard size.
