@@ -3,12 +3,13 @@
 import tensorflow as tf
 from tensorflow.keras import layers, models
 
-def build_model(num_classes, img_size=28):
+def build_model(num_classes, dropout_rate, img_size=28):
     """
     Builds a simple Convolutional Neural Network (CNN).
     
     Args:
-        num_classes (int): The number of output classes (36 in our case).
+        num_classes (int): The number of output classes (36).
+        dropout_rate (float): The dropout rate to use (from W&B).
         img_size (int): The height/width of the input images (28).
         
     Returns:
@@ -30,7 +31,8 @@ def build_model(num_classes, img_size=28):
     # Flatten and Dense Layers
     model.add(layers.Flatten())
     model.add(layers.Dense(128, activation='relu'))
-    model.add(layers.Dropout(0.5)) # Dropout for regularization
+    # Use the dropout_rate from the sweep config
+    model.add(layers.Dropout(dropout_rate))
     
     # Output Layer
     model.add(layers.Dense(num_classes, activation='softmax'))

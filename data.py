@@ -15,7 +15,8 @@ CLASS_NAMES = [
 ]
 
 IMG_SIZE = 28
-BATCH_SIZE = 64
+# This default will be overridden by the sweep
+DEFAULT_BATCH_SIZE = 64
 
 # --- 2. Preprocessing Functions ---
 
@@ -38,11 +39,14 @@ def preprocess(image, label):
 
 # --- 3. Main Data Loading Function ---
 
-def load_and_preprocess_data():
+def load_and_preprocess_data(batch_size=DEFAULT_BATCH_SIZE):
     """
     Loads the EMNIST/byclass dataset, filters for our 36 classes,
     and sets up optimized training and test pipelines.
     
+    Args:
+        batch_size (int): The batch size to use for the dataset.
+        
     Returns:
         (ds_train, ds_test): The optimized tf.data.Dataset objects.
     """
@@ -64,29 +68,16 @@ def load_and_preprocess_data():
     ds_train = ds_train.map(preprocess, num_parallel_calls=tf.data.AUTOTUNE)
     ds_train = ds_train.cache() # Cache after preprocessing
     ds_train = ds_train.shuffle(ds_info.splits['train'].num_examples)
-    ds_train = ds_train.batch(BATCH_SIZE)
+    # Use the batch_size passed from the sweep
+    ds_train = ds_train.batch(batch_size)
     ds_train = ds_train.prefetch(tf.data.AUTOTUNE)
     
     # --- Test Pipeline ---
     ds_test = ds_test.filter(filter_classes)
     ds_test = ds_test.map(preprocess, num_parallel_calls=tf.data.AUTOTUNE)
-    ds_test = ds_test.batch(BATCH_SIZE)
+    # Use the batch_size passed from the sweep
+    ds_test = ds_test.batch(batch_size)
     ds_test = ds_test.cache()
     ds_test = ds_test.prefetch(tf.data.AUTOTUNE)
     
     return ds_train, ds_test
-
-# --- 4. Sanity Check ---
-# This block runs ONLY when you execute `python data.py` directly
-if __name__ == "__main__":
-    print("Running data.py sanity check...")
-    ds_train, ds_test = load_and_preprocess_data()
-    
-    print("\n--- Data Sanity Check ---")
-    
-    # Take one batch from the training set and show the first 2 labels
-    for images, labels in ds_train.take(1):
-        print(f"Image 1 Label: {labels[0]}, Class: '{CLASS_NAMES[labels[0]]}'")
-        print(f"Image 2 Label: {labels[1]}, Class: '{CLASS_NAMES[labels[1]]}'")
-            
-    print("------------------------")
