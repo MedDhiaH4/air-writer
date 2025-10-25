@@ -21,5 +21,5 @@
 
 7th: -Created a small display on the top left where classified elements will be printed and the display grows/shrinks 	based on the length of the sentence
 
-Next step: -Enhance the code and try different models
-	   -Use the powerful W&B sweep for automatic hyperparameter tuning
+8th: -Configured W&B through wandb sweep to find the best hyperparameters and visualize the different training charts
+
