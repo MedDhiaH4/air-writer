@@ -1,0 +1,41 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air-Writer</title>
+    <!-- Link to our CSS stylesheet -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    
+    <!-- Title - moved further up via CSS -->
+    <h1>Air-Writer</h1>
+    <!-- Instruction <p> tag removed -->
+
+    <!-- Main application content -->
+    <main class="main-content">
+
+        <!-- Video container -->
+        <div class="video-container">
+            <video id="webcam" autoplay playsinline></video>
+            <canvas id="draw-canvas"></canvas>
+        </div>
+
+        <!-- Buttons -->
+        <div class="controls">
+            <button id="start-btn">Start Camera</button>
+            <button id="stop-btn">Stop Camera</button>
+        </div>
+
+        <!-- Output box -->
+        <input type="text" id="output-box" readonly placeholder="Your text will appear here...">
+
+    </main>
+
+    <!-- Link to our JavaScript -->
+    <script src="/static/script.js"></script>
+</body>
+</html>

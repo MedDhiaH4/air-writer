@@ -6,3 +6,4 @@ mediapipe==0.10.14
 tensorflow-datasets
 wandb
 matplotlib
+flask
