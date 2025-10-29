@@ -23,9 +23,6 @@ Air-Writer allows you to write letters (A-Z) and numbers (0-9) in the air using 
 
 The application follows this processing pipeline:
 
-![Air-Writer Pipeline Diagram](docs/images/pipeline_diagram.png)
-*(Note: Ensure you have saved the pipeline diagram I generated as `pipeline_diagram.png` in the `docs/images` folder)*
-
 1.  **Camera Input:** Captures video frames using OpenCV (`cv2.VideoCapture`).
 2.  **Hand Detection:** Processes frames with MediaPipe Hands to detect hand landmarks.
 3.  **Gesture Recognition:** Determines the current gesture (`write`, `classify`, `delete`, `standby`) based on finger counts derived from landmark positions.
@@ -79,9 +76,6 @@ Control the application using these simple hand gestures:
     pip install -r requirements.txt
     ```
 
-4.  **Ensure Model File:**
-    Make sure the trained model file `air_writer_model_final.h5` is present in the main project directory. Download it if necessary, or retrain using `python train_final.py`. If you rename the model, update the filename loaded in `main.py`.
-
 ## How to Run
 
 1.  Make sure your virtual environment is activated.
@@ -120,39 +114,8 @@ Control the application using these simple hand gestures:
         ![Sweep System Utilization](docs/images/2.png)
 
     * Final Model Training Performance (8 Epochs):
-        *(Showing loss and accuracy graphs for the final training run)*
-        ![Final Training Graphs](docs/images/image_968b67.png)
-
-    *(You can add a link to your public W&B project run here if desired)*
-
-## Future Work
-
-* Implement data augmentation during training to potentially improve robustness, especially for similar characters (e.g., 'S' vs '5').
-* Experiment with different CNN architectures or investigate sequence models (RNN/LSTM) using the raw point data.
-* Revisit web deployment using Streamlit or Flask, resolving browser/component compatibility issues.
-* Containerize the web application version using Docker.
-* Deploy the containerized application to a cloud platform like AWS.
+        ![Final Training Graphs](docs/images/3.png)
 
 ## License
 
-MIT License
-
-Copyright (c) 2025 Mohamed Dhia Hamdani
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+MIT License - Copyright (c) 2025 MDH
