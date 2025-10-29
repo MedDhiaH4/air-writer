@@ -55,7 +55,7 @@ Control the application using these simple hand gestures:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/MedDhiaH4/air-writer.git](https://github.com/MedDhiaH4/air-writer.git)
+    git clone https://github.com/MedDhiaH4/air-writer.git
     cd air-writer
     ```
 
